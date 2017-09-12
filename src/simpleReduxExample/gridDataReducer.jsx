@@ -1,7 +1,6 @@
 export default (state = {rowData: [], rowSelection: []}, action) => {
     switch (action.type) {
         case 'ROW_DATA_CHANGED':
-            debugger;    
             return {
                 ...state,
                 rowData: action.rowData,

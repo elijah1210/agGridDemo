@@ -1,0 +1,64 @@
+{
+	"env": {
+		"browser": true,
+		"node": true,
+		"jest": true
+	},
+	"extends": "airbnb",
+	"parser": "babel-eslint",
+	"parserOptions": {
+		"ecmaFeatures": {
+			"experimentalObjectRestSpread": true,
+			"spread": true
+		}
+	},
+	"rules": {
+		"import/extensions": [ "off" ],
+		"import/no-extraneous-dependencies": [
+			"off",
+			{ "devDependencies": true }
+		],
+		"import/no-unresolved": [ "off" ],
+		"no-tabs": [ "off" ],
+		"indent": [
+			2,
+			"tab",
+			{ "SwitchCase": 1 }
+		],
+		"linebreak-style": [ 0, "windows" ],
+		"max-len": [ "error", 150 ],
+		"react/jsx-filename-extension": [
+			1,
+			{ "extensions": [ ".js", ".jsx" ] }
+		],
+		"react/jsx-indent": [ 2, "tab" ],
+		"react/jsx-indent-props": [ 2, "tab" ],
+		"require-jsdoc": [
+			2,
+			{
+				"require": {
+					"ArrowFunctionExpression": true,
+					"ClassDeclaration": true,
+					"FunctionDeclaration": true,
+					"MethodDefinition": true
+				}
+			}
+		],
+		// "spaced-comment" below is same as airbnb except block.exceptions has "*" to ignore our file-level comment blocks.
+		"spaced-comment": [
+			"error",
+			"always",
+			{
+				"line": {
+					"exceptions": [ "-", "+" ],
+					"markers": [ "=", "!" ] // space here to support sprockets directives
+				},
+				"block": {
+					"exceptions": [ "-", "+", "*" ],
+					"markers": [ "=", "!" ], // space here to support sprockets directives
+					"balanced": false
+				}
+			}
+		]
+	}
+}
