@@ -1,0 +1,140 @@
+// @import 'agGrid';
+
+// @mixin mErrorCell($color) {
+// 	height: 39px;
+// 	border: solid 1px $color;
+// 	padding: 0 12px;
+// 	margin: 0 -12px;
+// 	.mTriangle {
+// 		@include mTriangle($color);
+// 		top: 0;
+// 	}
+
+// 	&.mNumeric{
+// 		text-align: right;
+// 	}
+
+// 	&:hover {
+// 		border: solid 1px $color !important;
+
+// 		.mTriangle {
+// 			border-color: transparent $color transparent transparent;
+// 		}
+// 	}
+// }
+
+// .mEditable {
+// 	height: 39px;
+// 	padding: 0 12px;
+// 	margin: 0 -12px;
+
+// 	.mTriangle {
+// 		@include mTriangle(#e0e0e0);
+// 		top: 0;
+// 	}
+
+// 	.mPenIcon {
+// 		@include mPenIcon;
+// 		display: none;
+// 	}
+
+// 	&:hover {
+// 		border: solid 1px $grid-blue-color !important;
+
+// 		.mTriangle {
+// 			border-color: transparent $grid-blue-color transparent transparent;
+// 		}
+
+// 		.mPenIcon {
+// 			display: block;
+// 		}
+// 	}
+
+// 	&.mNumeric {
+// 		text-align: right;
+// 		padding-right: 12px;
+
+// 		.mPenIcon {
+// 			text-align: left;
+// 			left: 8px;
+// 		}
+// 	}
+// }
+
+// .mEditableWithError {
+// 	@include mErrorCell($error-color);
+// 	/* Background color when hovered on a error cell. */
+// 	&:hover {
+// 		background-color: rgba(219,33,26,0.05);
+// 	}
+// }
+
+.mEditableWithError {
+	// @include mErrorCell($error-color);
+	/* Background color when hovered on a error cell. */
+	&:hover {
+		background-color: rgba(219,33,26,0.05);
+	}
+}
+
+// .mEditableWithWarning {
+// 	@include mErrorCell($warning-color);
+// 	/* Background color when hovered on a warning cell. */
+// 	&:hover {
+// 		background-color: rgba(249,168,37, 0.05);
+// 	}
+// }
+
+// .mNotEditable {
+// 	overflow: hidden;
+// 	text-overflow: ellipsis;
+// 	&.mNumeric {
+// 		text-align: right;
+// 	}
+// }
+
+// .mTooltipContainer {
+// 	width: 150px;
+// 	background-color: #fff !important;
+// 	color: #505050;
+// 	padding: 12px;
+// 	margin: -8px;
+// 	margin-left: -1px;
+// 	box-shadow: 4px 4px 6px 0px rgba(194,194,194,1);
+// 	text-align: left;
+// 	position: absolute;
+// 	top: 1px;
+// 	border-left: solid 4px;
+
+// 	&.mErrorBorder {
+// 		border-color: $error-color;
+// 	}
+
+// 	&.mWarningBorder {
+// 		border-color: $warning-color;
+// 	}
+
+// 	.mTooltipTitle {
+// 		font-size: 12px;
+// 		text-transform: uppercase;
+// 		margin-bottom:8px;
+
+// 		&.mError {
+// 			color: $error-color;
+// 		}
+
+// 		&.mWarning {
+// 			color: $warning-color;
+// 		}
+// 	}
+
+// 	.mMessage {
+// 		font-size: 12px;
+// 	}
+// }
+
+// /* Removing the default background of the tooltip. Override React-Toolbox's tooltip style. */
+// .tooltipInner {
+//     background: transparent!important;
+// }
+
