@@ -7,3 +7,8 @@ export const updateRowSelection = rowSelection => ({
 	type: 'ROW_SELECTION_CHANGED',
 	rowSelection,
 });
+
+export const updateLines = lines => ({
+	type: 'UPDATE_LINES',
+	lines,
+});
