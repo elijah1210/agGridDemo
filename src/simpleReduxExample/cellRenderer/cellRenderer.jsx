@@ -6,20 +6,22 @@ import PropTypes from 'prop-types';
 /**
  * Cell renderer component.
  */
-const CellRenderer = (props) => {
-	const value = props.value;
+export default class CellRenderer extends React.Component {
+	render() {
+		const value = this.props.value;
 
-	const field = props.colDef.field;
+		const field = this.props.colDef.field;
 
-	const error = props.data.error ? props.data.error[field] : '';
-	const warning = props.data.warning ? props.data.warning[field] : '';
+		const error = this.props.data.error ? this.props.data.error[field] : '';
+		const warning = this.props.data.warning ? this.props.data.warning[field] : '';
 
-		// Handle errors and warnings.
-	if (error || warning) {
-		return (<div style={{ backgroundColor: 'red' }}>{value}</div>);
+				// Handle errors and warnings.
+		if (error || warning) {
+			return (<div style={{ backgroundColor: 'red' }}>{value}</div>);
+		}
+		return (<div>{value}</div>);
 	}
-	return (<div>{value}</div>);
-};
+}
 
 /**
  * Prop types validation.
@@ -55,5 +57,3 @@ CellRenderer.defaultProps = {
 		field: '',
 	}),
 };
-
-export default CellRenderer;
