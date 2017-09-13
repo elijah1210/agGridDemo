@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
  * Cell renderer component.
  */
 const CellRenderer = (props) => {
-	console.log(props);
 	const value = props.value;
 
 	const field = props.colDef.field;

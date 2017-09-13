@@ -84,7 +84,6 @@ class GridComponent extends Component {
 				...data,
 				[colDef.field]: trimmednewVal,
 			};
-			console.log(output);
 			this.props.dispatch(updateLines([output]));
 		}
 	}
