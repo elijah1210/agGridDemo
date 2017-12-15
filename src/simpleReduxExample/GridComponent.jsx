@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { AgGridReact } from 'ag-grid-react';
 import { connect } from 'react-redux';
+import { get, isEqual, xorWith } from 'lodash';
 import CellRenderer from './cellRenderer';
 // take this line out if you do not want to use ag-Grid-Enterprise
 import 'ag-grid-enterprise';
@@ -87,6 +88,28 @@ class GridComponent extends Component {
 			setTimeout(() => {
 				this.props.dispatch(updateLines([output]));
 			}, 1000);
+		}
+	}
+
+	/**
+	 * Handles the scenario where the componentState has changed in some way.
+	 */
+	onComponentStateChanged = (event) => {
+		const { currentValue, previousValue } = { ...get(event, 'rowData', { currentValue: [], previousValue: [] }) };
+		// Make this generic, use the getRowNodeId function of the grid that should be passed if deltaRowDataMode is true.
+		// The function getRowNodeId is mandatory if deltaRowDataMode is true.
+		const getRowNodeId = get(event, 'getRowNodeId.currentValue', () => {});
+		if (this.api) {
+			// Get the row nodes. You need these to call redrawRows.
+			// Previous iteration was redrawing ALL rows regardless causing the cell to blur.
+			const rows = xorWith(currentValue, previousValue, (currVal, prevVal) =>
+				isEqual(currVal.error, prevVal.error)
+					|| isEqual(currVal.warning, prevVal.warning)
+					|| isEqual(currVal.info, prevVal.info));
+			if (rows.length) {
+				const rowNodes = rows.map(row => this.api.getRowNode(getRowNodeId(row)));
+				this.api.redrawRows({ rowNodes });
+			}
 		}
 	}
 
