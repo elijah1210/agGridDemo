@@ -61,7 +61,7 @@ export default (state = { rowData: [], rowSelection: [] }, action) => {
 		case 'UPDATE_LINES': {
 			const newRowData = mergeArraysOnProperty(state.rowData, action.lines, 'symbol');
 			const finalRowData = validateRows(newRowData);
-			console.log(finalRowData);
+
 			return {
 				...state,
 				rowData: finalRowData,

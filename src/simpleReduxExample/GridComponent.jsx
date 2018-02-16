@@ -21,7 +21,7 @@ class GridComponent extends Component {
 				{
 					headerName: 'Symbol',
 					field: 'symbol',
-					editable: true,
+					editable: false,
 					cellRendererFramework: CellRenderer,
 					newValueHandler: this.handleValueChange,
 				},
