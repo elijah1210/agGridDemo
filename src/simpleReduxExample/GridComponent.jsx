@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { AgGridReact } from 'ag-grid-react';
 import { connect } from 'react-redux';
+import { get, differenceWith, isEqual } from 'lodash';
 import CellRenderer from './cellRenderer';
 // take this line out if you do not want to use ag-Grid-Enterprise
 import 'ag-grid-enterprise';
@@ -78,13 +79,31 @@ class GridComponent extends Component {
 
 	handleValueChange = ({ oldValue, data, colDef, newValue }) => {
 		const isUpdateRequired = oldValue !== newValue;
-		const trimmednewVal = newValue.trim();
 		if (isUpdateRequired) {
+			const trimmednewVal = newValue.trim();
+
 			const output = {
 				...data,
 				[colDef.field]: trimmednewVal,
 			};
 			this.props.dispatch(updateLines([output]));
+		}
+	}
+
+	getRowNodeId = data => data.symbol
+
+	onComponentStateChanged = (event) => {
+		const { currentValue, previousValue } = { ...get(event, 'rowData', { currentValue: [], previousValue: [] }) };
+
+		if (this.gridApi) {
+			const rows = differenceWith(currentValue, previousValue, (currVal, prevVal) =>
+				isEqual(currVal.error, prevVal.error),
+			);
+
+			if (rows.length && previousValue.length) {
+				const rowNodes = rows.map(row => this.gridApi.getRowNode(this.getRowNodeId(row)));
+				this.gridApi.redrawRows({ rowNodes });
+			}
 		}
 	}
 
@@ -114,10 +133,11 @@ class GridComponent extends Component {
 					}}
 					groupDefaultExpanded="1"
 					enableSorting
-					getRowNodeId={data => data.symbol}
+					getRowNodeId={this.getRowNodeId}
                     // events
 					onGridReady={this.onGridReady}
 					onSelectionChanged={this.onSelectionChanged}
+					onComponentStateChanged={this.onComponentStateChanged}
 				/>
 			</div>
 		);
